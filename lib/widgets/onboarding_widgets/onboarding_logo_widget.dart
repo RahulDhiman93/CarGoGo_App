@@ -1,13 +1,14 @@
+import 'package:cargogomapp/widgets/helper_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget onboardingLogoWidget() {
+Widget onBoardingLogoWidget() {
   return Container(
     width: Get.width,
-    height: Get.height * 0.6,
+    height: Get.height * 0.4,
     decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/mask.png'), fit: BoxFit.cover)),
+            image: AssetImage('assets/mask.png'), fit: BoxFit.fill)),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -17,14 +18,7 @@ Widget onboardingLogoWidget() {
           height: 100,
         ),
         const SizedBox(height: 05),
-        const Text(
-          'CarGoGo',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        textWidget(text: "CarGoGo", size: 32, color: Colors.white)
       ],
     ),
   );
