@@ -4,7 +4,7 @@ import 'package:cargogomapp/widgets/helper_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget signupWidget(Function(String firstName, String lastName, String email, String password) onRegisterTap) {
+Widget signupWidget(Function(String firstName, String lastName, String email, String password) onRegisterTap, Function onLoginTap) {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -161,28 +161,54 @@ Widget signupWidget(Function(String firstName, String lastName, String email, St
       const SizedBox(
         height: 20,
       ),
-      Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: ElevatedButton(
-          onPressed: ()=> onRegisterTap(
-            firstNameController.text,
-            lastNameController.text,
-            emailController.text,
-            passwordController.text,
-          ),
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white, primary: AppColors.purpleColor,
-          ),
-          child: const Text(
-            AppStrings.register,
-            style: TextStyle(
-              color: Colors.white,
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: ElevatedButton(
+              onPressed: ()=> onRegisterTap(
+                firstNameController.text,
+                lastNameController.text,
+                emailController.text,
+                passwordController.text,
+              ),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, primary: AppColors.purpleColor,
+              ),
+              child: const Text(
+                AppStrings.register,
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
-        ),
+          const SizedBox(width: 20,),
+          Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: ElevatedButton(
+              onPressed: ()=> onLoginTap(),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: AppColors.purpleColor,
+                backgroundColor: Colors.white,
+                shadowColor: AppColors.purpleColor,
+              ),
+              child: const Text(
+                AppStrings.login,
+                style: TextStyle(
+                  color: AppColors.purpleColor,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       const SizedBox(
         height: 40,
