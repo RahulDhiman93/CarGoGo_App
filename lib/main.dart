@@ -1,3 +1,4 @@
+import 'package:cargogomapp/views/onboarding/signup_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:cargogomapp/views/onboarding/login_screen.dart';
@@ -18,7 +19,7 @@ class CarGoGo extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(textTheme),
       ),
-      home: const LoginScreen(),
+      home: const SignupScreen(),
     );
   }
 }

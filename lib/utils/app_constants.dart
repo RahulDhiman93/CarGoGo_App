@@ -4,6 +4,8 @@ class AppStrings {
   static const String register = 'Register';
   static const String getMovingWithCarGoGo = 'Get moving with CarGoGo';
   static const String enterMobileNumber = 'Enter your mobile number';
+  static const String enterFirstName = 'Enter your first name';
+  static const String enterLastName = 'Enter your last name';
   static const String enterEmail = 'Enter your email';
   static const String enterPassword = 'Enter your password';
   static const String byCreating = 'By creating an account, you agree to our';
