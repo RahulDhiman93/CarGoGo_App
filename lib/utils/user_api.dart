@@ -6,7 +6,7 @@ class UserApi {
 
   static void register(String firstName, String lastName, String email, String password) async {
 
-    String apiUrl = '${AppConstants.baseUrl}/auth/register';
+    String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.register}';
 
     try {
       final response = await http.post(
@@ -35,7 +35,7 @@ class UserApi {
 
   static void login(String email, String password) async {
 
-    String apiUrl = '${AppConstants.baseUrl}/auth/login';
+    String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.login}';
 
     try {
       final response = await http.post(
