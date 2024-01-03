@@ -1,17 +1,17 @@
 import 'package:cargogomapp/utils/user_api.dart';
-import 'package:cargogomapp/widgets/onboarding_widgets/login_widget.dart';
+import 'package:cargogomapp/widgets/onboarding_widgets/signup_widget.dart';
 import 'package:cargogomapp/widgets/onboarding_widgets/onboarding_logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              onBoardingLogoWidget(0.4),
+              onBoardingLogoWidget(0.3),
               const SizedBox(height: 40,),
-              loginWidget((String email, String password){
-                UserApi.login(email, password);
+              signupWidget((String firstName, String lastName, String email, String password){
+                UserApi.register(firstName, lastName, email, password);
               }),
             ],
           ),

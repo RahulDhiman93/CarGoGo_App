@@ -1,11 +1,13 @@
+import 'dart:ffi';
+
 import 'package:cargogomapp/widgets/helper_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget onBoardingLogoWidget() {
+Widget onBoardingLogoWidget(num heightRatio) {
   return Container(
     width: Get.width,
-    height: Get.height * 0.4,
+    height: Get.height * heightRatio,
     decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage('assets/mask.png'), fit: BoxFit.fill)),
