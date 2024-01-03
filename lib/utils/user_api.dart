@@ -7,16 +7,15 @@ import 'package:http/http.dart' as http;
 import '../models/user_core_data.dart';
 
 class UserApi {
-
   static Future<bool> accessTokenCall() async {
-
     UserCoreData? savedUser = await UserCoreData.getUser();
     if (savedUser == null) {
       return false;
     }
 
     String accessToken = savedUser.accessToken;
-    String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.accessToken}/$accessToken';
+    String apiUrl =
+        '${AppConstants.baseUrl}${AppApiEndPoints.accessToken}/$accessToken';
 
     try {
       final response = await http.get(
@@ -43,8 +42,8 @@ class UserApi {
     }
   }
 
-  static void register(String firstName, String lastName, String email, String password) async {
-
+  static Future<bool> register(
+      String firstName, String lastName, String email, String password) async {
     String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.register}';
 
     try {
@@ -67,21 +66,24 @@ class UserApi {
           print('Register API Call Successful\n');
           print(userApiResponse.data["user"]);
         }
-        UserCoreData.saveUser(UserCoreData.fromJson(userApiResponse.data["user"]));
+        UserCoreData.saveUser(
+            UserCoreData.fromJson(userApiResponse.data["user"]));
+        return userApiResponse.ok;
       } else {
         if (kDebugMode) {
           print('API Call Failed: ${response.statusCode}');
         }
+        return false;
       }
     } catch (e) {
       if (kDebugMode) {
         print('Exception during API call: $e');
       }
+      return false;
     }
   }
 
-  static void login(String email, String password) async {
-
+  static Future<bool> login(String email, String password) async {
     String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.login}';
 
     try {
@@ -99,16 +101,20 @@ class UserApi {
           print('Login API Call Successful\n');
           print(userApiResponse.data["user"]);
         }
-        UserCoreData.saveUser(UserCoreData.fromJson(userApiResponse.data["user"]));
+        UserCoreData.saveUser(
+            UserCoreData.fromJson(userApiResponse.data["user"]));
+        return userApiResponse.ok;
       } else {
         if (kDebugMode) {
           print('API Call Failed: ${response.statusCode}');
         }
+        return false;
       }
     } catch (e) {
       if (kDebugMode) {
         print('Exception during API call: $e');
       }
+      return false;
     }
   }
 }
