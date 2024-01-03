@@ -1,4 +1,5 @@
 import 'package:cargogomapp/utils/user_api.dart';
+import 'package:cargogomapp/views/onboarding/signup_screen.dart';
 import 'package:cargogomapp/widgets/onboarding_widgets/login_widget.dart';
 import 'package:cargogomapp/widgets/onboarding_widgets/onboarding_logo_widget.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 40,),
               loginWidget((String email, String password){
                 UserApi.login(email, password);
+              }, (){
+                Get.off(const SignupScreen());
               }),
             ],
           ),
