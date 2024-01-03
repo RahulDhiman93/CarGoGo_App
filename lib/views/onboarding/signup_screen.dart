@@ -5,6 +5,9 @@ import 'package:cargogomapp/widgets/onboarding_widgets/onboarding_logo_widget.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/helper_widgets/error_widget.dart';
+import '../home/home_screen.dart';
+
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
 
@@ -26,8 +29,18 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               onBoardingLogoWidget(0.3),
               const SizedBox(height: 40,),
-              signupWidget((String firstName, String lastName, String email, String password){
-                UserApi.register(firstName, lastName, email, password);
+              signupWidget((String firstName, String lastName, String email, String password) async {
+                if (firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty) {
+                  errorWidget(context: context, message: "Please enter all the details");
+                  return;
+                }
+                bool ok = await UserApi.register(firstName, lastName, email, password);
+                if (!mounted) return;
+                if (ok) {
+                  Get.off(const HomeScreen());
+                } else {
+                  errorWidget(context: context, message: "Something went wrong");
+                }
               }, () {
                 Get.off(const LoginScreen());
               }),
