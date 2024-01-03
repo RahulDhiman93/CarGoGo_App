@@ -7,7 +7,7 @@ class AppStrings {
   static const String enterEmail = 'Enter your email';
   static const String enterPassword = 'Enter your password';
   static const String byCreating = 'By creating an account, you agree to our';
-  static const String byLogin = 'By login an account, you agree to our';
+  static const String byLogin = 'By login your account, you agree to our';
   static const String termsOfService = 'Terms of Service';
   static const String of = 'of';
   static const String privacyPolicy = 'Privacy Policy';
