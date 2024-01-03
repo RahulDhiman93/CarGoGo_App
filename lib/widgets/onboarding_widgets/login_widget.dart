@@ -114,7 +114,8 @@ Widget loginWidget(Function(String email, String password) onLoginTap) {
       const SizedBox(
         height: 40,
       ),
-      Padding(
+      Container(
+        alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 50),
         child: RichText(
             textAlign: TextAlign.center,
