@@ -1,7 +1,7 @@
-import 'package:cargogomapp/utils/user_api.dart';
-import 'package:cargogomapp/widgets/onboarding_widgets/onboarding_logo_widget.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,22 +11,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Completer<GoogleMapController> _mapController =
+      Completer<GoogleMapController>();
+  String? _mapStyle;
+
+  static const CameraPosition _kCarGoGoHQ = CameraPosition(
+    target: LatLng(37.34896133580664, -121.936849655962),
+    zoom: 14.4746,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    rootBundle.loadString('assets/map_style.txt').then((string){
+      _mapStyle = string;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: Get.width,
-        height: Get.height,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              onBoardingLogoWidget(0.8),
-              const SizedBox(height: 40,),
-            ],
+      body: Stack(
+        children: [
+          GoogleMap(
+            mapType: MapType.normal,
+            initialCameraPosition: _kCarGoGoHQ,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+            onMapCreated: (GoogleMapController controller) {
+              controller.setMapStyle(_mapStyle);
+              _mapController.complete(controller);
+            },
           ),
-        ),
+        ]
       ),
     );
   }
