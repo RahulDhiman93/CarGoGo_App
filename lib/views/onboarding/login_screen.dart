@@ -6,7 +6,6 @@ import 'package:cargogomapp/widgets/onboarding_widgets/login_widget.dart';
 import 'package:cargogomapp/widgets/onboarding_widgets/onboarding_logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
