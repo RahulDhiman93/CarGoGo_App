@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cargogomapp/utils/app_colors.dart';
 import 'package:cargogomapp/utils/app_constants.dart';
 import 'package:cargogomapp/widgets/helper_widgets/text_widget.dart';
+import 'package:cargogomapp/widgets/home_widgets/nav_drawer_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,8 +23,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final Completer<GoogleMapController> _mapController =
       Completer<GoogleMapController>();
+
   String? _mapStyle;
   String googleAPiKey = "AIzaSyDBEaQQak_ENQqohJtIecNuftTM1ARfh_0";
 
@@ -61,6 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: const NavDrawer(),
       body: Stack(children: [
         GoogleMap(
           mapType: MapType.normal,
@@ -118,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 GestureDetector(
                   onTap: () {
-
+                    _scaffoldKey.currentState?.openDrawer();
                   },
                   child: CircleAvatar(
                     radius: 25,
