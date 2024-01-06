@@ -17,10 +17,15 @@ class AppStrings {
   static const String enterOtp = 'Enter your OTP code below';
   static const String resendCode = 'Resend code in';
   static const String seconds = 'seconds';
+  static const String goodMorning = 'Good Morning';
+  static const String whereAreYouGoing = 'Where are you going?';
+  static const String from = 'From';
+  static const String to = 'To';
 }
 
 class AppConstants {
-  static const String baseUrl = 'http://10.0.2.2:8080';
+  //static const String baseUrl = 'http://10.0.2.2:8080'; //ANDROID LOCAL
+  static const String baseUrl = 'http://127.0.0.1:8080'; //IOS LOCAL
 }
 
 class AppApiEndPoints {
