@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
           markers: markers,
           polylines: polylines,
           initialCameraPosition: _kCarGoGoHQ,
-          myLocationEnabled: true,
-          myLocationButtonEnabled: true,
+          myLocationEnabled: false,
+          myLocationButtonEnabled: false,
           zoomControlsEnabled: false,
           onMapCreated: (GoogleMapController controller) {
             controller.setMapStyle(_mapStyle);
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget profileTile(UserCoreData user) {
     return Positioned(
-      top: 50,
+      top: 70,
       left: 20,
       right: 20,
       child: Container(
@@ -116,11 +116,16 @@ class _HomeScreenState extends State<HomeScreen> {
             width: Get.width,
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundColor: AppColors.purpleColor,
-                  child: textWidget(
-                      text: user.firstName[0], size: 20, color: Colors.white),
+                GestureDetector(
+                  onTap: () {
+
+                  },
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: AppColors.purpleColor,
+                    child: textWidget(
+                        text: user.firstName[0], size: 20, color: Colors.white),
+                  ),
                 ),
                 const SizedBox(
                   width: 15,
@@ -140,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           TextSpan(
                               text: user.firstName,
                               style: const TextStyle(
-                                color: AppColors.purpleColor,
+                                color: AppColors.orangeColor,
                                 fontSize: 14,
                               )),
                         ],
@@ -160,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget addressField() {
     return Positioned(
-        top: 130,
+        top: 150,
         left: 25,
         right: 25,
         child: Column(
@@ -237,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.only(left: 10),
                         child: Icon(
                           Icons.pin_end,
-                          color: AppColors.purpleColor,
+                          color: AppColors.orangeColor,
                         ),
                       )),
                   textEditingController: destinationAddress,
@@ -263,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return const Align(
       alignment: Alignment.bottomRight,
       child: Padding(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(20.0),
         child: CircleAvatar(
           radius: 25,
           child: Icon(
@@ -345,7 +350,6 @@ class _HomeScreenState extends State<HomeScreen> {
       points: polylineCoordinates,
     );
     polylines.add(polyline);
-    setState(() {});
   }
 
   _calculateBounds(List<LatLng> points) async {
@@ -367,8 +371,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
 
     final GoogleMapController controller = await _mapController.future;
-    await controller.animateCamera(CameraUpdate.newLatLngBounds(bounds, 10));
-    setState(() {});
+    await controller.animateCamera(CameraUpdate.newLatLngBounds(bounds, 50));
   }
 
 }

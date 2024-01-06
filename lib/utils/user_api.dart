@@ -85,7 +85,6 @@ class UserApi {
 
   static Future<bool> login(String email, String password) async {
     String apiUrl = '${AppConstants.baseUrl}${AppApiEndPoints.login}';
-
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -95,7 +94,6 @@ class UserApi {
 
       final jsonResponse = json.decode(response.body);
       final userApiResponse = UserAuthApiResponse.fromJson(jsonResponse);
-
       if (response.statusCode == 200) {
         if (kDebugMode) {
           print('Login API Call Successful\n');

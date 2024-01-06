@@ -15,6 +15,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late bool isLoading;
+
+  @override
+  void initState() {
+    super.initState();
+    isLoading = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +40,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   errorWidget(context: context, message: "Please enter all the details");
                   return;
                 }
+                setState(() {
+                  isLoading = true;
+                });
                 bool ok = await UserApi.login(email, password);
                 if (!mounted) return;
+                setState(() {
+                  isLoading = false;
+                });
                 if (ok) {
                   Get.off(const HomeScreen());
                 } else {
@@ -43,6 +56,14 @@ class _LoginScreenState extends State<LoginScreen> {
               }, (){
                 Get.off(const SignupScreen());
               }),
+              if (isLoading)
+                Container(
+                  alignment: Alignment.center,
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                ),
             ],
           ),
         ),
